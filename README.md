@@ -112,6 +112,68 @@ Antes de utilizar o modelo de IA generativa do Gemini, é necessário configurar
 
 ---
 
+## Configuração da API do Gemini
+
+Antes de utilizar o modelo de IA generativa do Gemini, é necessário realizar a configuração adequada da API, garantindo que todas as permissões e variáveis de ambiente estejam devidamente configuradas. Para isso, siga o passo a passo abaixo.
+
+
+### Passo 1: Criar uma chave para a API do Gemini
+
+1. **Acesse a página de API do Gemini**: Para gerar sua chave de API, acesse o [Google AI Studio](https://aistudio.google.com/app/?pli=1).
+
+2. **Gerar a chave**: Após fazer o login, localize a opção para **Gerar chave de API** e siga as instruções para criar sua chave exclusiva. E use com segurança, pois será necessária para acessar a API.
+
+![api_key](https://github.com/user-attachments/assets/2916d6c0-e17c-4bae-859a-2c689b8c22d9)
+
+### Passo 2: Criar o arquivo `.env` para armazenar a chave
+
+Para garantir a segurança do seu código e evitar expor a chave da API diretamente no código-fonte, você deve armazená-la em um arquivo `.env` (arquivo de variáveis de ambiente).
+
+1. **Criar o arquivo `.env`**:
+   - Na pasta raiz do seu projeto, crie um arquivo chamado `.env`.
+
+2. **Adicionar a chave da API no `.env`**:
+   - No arquivo `.env`, insira sua chave no formato abaixo:
+   
+   ```bash
+   GEMINI_API_KEY=sua_chave_aqui
+   ```
+
+### Passo 3: Instalar a biblioteca `python-dotenv`
+
+Para que seu código Python consiga ler as variáveis de ambiente definidas no arquivo `.env`, é necessário instalar a biblioteca `python-dotenv`.
+
+1. **Instale o `python-dotenv`** executando o seguinte comando no terminal:
+
+   ```bash
+   pip install python-dotenv
+   ```
+
+### Passo 4: Utilizar a chave da API no código
+
+Com o arquivo `.env` configurado, você pode agora acessar a chave da API no seu código Python. Para isso, siga as instruções abaixo:
+
+1. **Importar e carregar a variável de ambiente**:
+
+   No início do seu script Python, adicione o seguinte código para carregar as variáveis do `.env`:
+
+   ```python
+   import os
+   from dotenv import load_dotenv
+
+   # Carrega as variáveis do .env para o seu código principal
+   load_dotenv()
+
+   # Obtem a chave da API do Gemini
+   gemini_api_key = os.getenv('GEMINI_API_KEY')
+
+   # Para testar se a sua chave foi configurada corretamente
+   print(f'Sua chave da API: {gemini_api_key}')
+   ```
+
+
+---
+
 ## Coleta de Dados da PokeAPI
 
 Os dados dos Pokémons serão coletados diretamente da PokeAPI. Abaixo estão alguns exemplos de dados que serão coletados para análise:
